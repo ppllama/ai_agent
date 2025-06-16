@@ -3,6 +3,7 @@
 import sys
 from pkg.calculator import Calculator
 from pkg.render import render
+import re
 
 
 def main():
@@ -14,6 +15,9 @@ def main():
         return
 
     expression = " ".join(sys.argv[1:])
+    # Add spaces around operators
+    expression = re.sub(r'([+\-*/])', r' \1 ', expression)
+    expression = ' '.join(expression.split())
     try:
         result = calculator.evaluate(expression)
         to_print = render(expression, result)

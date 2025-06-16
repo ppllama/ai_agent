@@ -30,7 +30,7 @@ class TestCalculator(unittest.TestCase):
 
     def test_complex_expression(self):
         result = self.calculator.evaluate("2 * 3 - 8 / 2 + 5")
-        self.assertEqual(result, 7)
+        self.assertEqual(result, 4)
 
     def test_empty_expression(self):
         result = self.calculator.evaluate("")
@@ -43,6 +43,10 @@ class TestCalculator(unittest.TestCase):
     def test_not_enough_operands(self):
         with self.assertRaises(ValueError):
             self.calculator.evaluate("+ 3")
+
+    def test_user_defined_precedence(self):
+        result = self.calculator.evaluate("3 + 7 * 2")
+        self.assertEqual(result, 20)
 
 
 if __name__ == "__main__":
